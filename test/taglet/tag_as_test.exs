@@ -4,7 +4,6 @@ defmodule Taglet.TagAsTest do
   alias Taglet.{Tagging, Tag}
 
   import Ecto.Query
-  import Mix.Ecto, only: [build_repo_priv: 1]
 
   use ExUnit.Case
 
@@ -395,7 +394,7 @@ defmodule Taglet.TagAsTest do
 
   # Aux functions
   defp setup_tenant do
-    migrations_path = Path.join(build_repo_priv(@repo), "migrations")
+    migrations_path = Application.app_dir(:taglet, ["priv", "repo", "migrations"])
 
     # Drop the previous tenant to reset the data
     SQL.query(@repo, "DROP SCHEMA \"#{@tenant_id}\" CASCADE", [])

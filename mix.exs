@@ -4,7 +4,7 @@ defmodule Taglet.Mixfile do
   def project do
     [app: :taglet,
      version: "0.6.0",
-     elixir: "~> 1.4",
+     elixir: "~> 1.7",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      elixirc_paths: elixirc_paths(Mix.env),
@@ -38,7 +38,8 @@ defmodule Taglet.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:ecto, ">= 2.1.0"},
+      {:ecto, "~> 3.0"},
+      {:ecto_sql, "~> 3.0"},
       {:postgrex, "~> 0.14.0"},
       {:inflex, "~> 1.8.1"},
       {:ex_doc, "~> 0.14", only: :dev, runtime: false},

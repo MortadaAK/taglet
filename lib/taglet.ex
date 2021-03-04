@@ -58,7 +58,7 @@ defmodule Taglet do
       taggable_type: struct.__struct__ |> taggable_type,
       context: context,
       tag_id: tag_resource.id,
-      inserted_at: Ecto.DateTime.utc
+      inserted_at: NaiveDateTime.truncate(NaiveDateTime.utc_now, :second)
     }
   end
 
@@ -220,7 +220,7 @@ defmodule Taglet do
   end
 
   defp do_tags_search(queryable, tags, context) do
-    %{from: {_source, schema}} = Ecto.Queryable.to_query(queryable)
+    %{from: %{source: {_source, schema}}} = Ecto.Queryable.to_query(queryable)
 
     queryable
     |> TagletQuery.search_tagged_with(tags, context, taggable_type(schema))
